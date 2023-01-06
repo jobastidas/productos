@@ -1,0 +1,210 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            
+          </div>
+          <div class="col-xl-3 col-lg-6">
+           
+          </div>
+          <div class="col-xl-3 col-lg-6">
+          
+          </div>
+          <div class="col-xl-3 col-lg-6">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <div class="row">
+              <div class="col-6">
+       
+            <form class="table align-items-center table-flush">
+              <div class="mb-3 row">
+                <div class="col-xs-3 col-sm-auto">
+                  <input id="table-filtering-search"  placeholder="buscar nombre o correo"  class="form-control" type="text"  (keyup)="updateFilter($event)" />
+                </div>
+              </div>
+            </form>
+              </div>
+              <div class="col-4"></div>
+              <div class="col-2">
+                <button class="btn btn-success" title="Crear" (click)="modalCrear(content)">
+                  <i  class="ni ni-fat-add"></i>
+                </button>
+              </div>
+            </div>
+            
+          </div>
+          <div class="table-responsive">
+    
+            
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col">Google</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Estado</th>
+                 <th scope="col">Acciones</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let usuario of  data" >
+                  <th scope="row">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{usuario.nombre}}</span>                      
+                    </div>
+                    </th>
+                    <th scope="row">
+                        <div class="media-body">
+                            <span class="mb-0 text-sm">{{usuario.correo}}</span>                     
+                        </div>
+                        </th>
+                        <th scope="row">
+                            <div class="media-body">
+                                <span class="mb-0 text-sm">{{usuario.google ? 'Activo' : 'No Activo'}}</span>                   
+                            </div>
+                            </th>
+
+                            <th scope="row">
+                                <div class="media-body">
+                                    <span class="mb-0 text-sm">{{usuario.rol}}</span>                       
+                                </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="media-body">
+                                        <span class="mb-0 text-sm">{{usuario.estado ? 'Activo' : 'No Activo'}}</span>                  
+                                    </div>
+                                    </th>
+                    <th scope="row">  
+                      <div class="row">
+    
+                        <div class="col-6">
+                          <button class="btn btn-primary" title="Editar" (click)="modalEditar(content,usuario)">
+                            <i  class="ni ni-single-copy-04"></i>
+                          </button>
+                        </div>
+                        <div class="col-6">
+                          <button class="btn btn-danger" title="Eliminar" (click)="modalEliminar(eliminar,usuario)">
+                            <i class="ni ni-fat-remove"></i>
+                          </button>
+                        </div>
+                      </div>
+                     
+                    </th>
+                    </tr>
+                   
+                    </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{tituloModal}}</h4>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+	</div>
+
+  <div class="modal-body">
+		<form   [formGroup]="UsuarioForm" >
+			<div class="mb-3">
+				<label for="dateOfBirth">Nombre</label>
+				<div class="input-group">
+            <div class="col-11">
+              <input class="form-control" formControlName="nombre" type="text" 
+              [ngClass]="{ 'is-invalid':submitted &&  UsuarioForm.nombre.errors }">            </div>
+
+            <div class="col-1">
+              
+          <div *ngIf="UsuarioForm.controls.nombre.touched && UsuarioForm.controls.nombre.errors?.required"
+          class="text text-danger mt-1">
+          *
+        </div>
+          </div>
+       
+				</div>
+			</div>
+
+            <div class="mb-3">
+				<label for="dateOfBirth">Correo</label>
+				<div class="input-group">
+            <div class="col-11">
+              <input class="form-control" formControlName="correo" type="email" 
+              [ngClass]="{ 'is-invalid':submitted &&  UsuarioForm.correo.errors }">            </div>
+
+            <div class="col-1">
+              
+          <div *ngIf="UsuarioForm.controls.correo.touched && UsuarioForm.controls.correo.errors?.required"
+          class="text text-danger mt-1">
+          *
+        </div>
+          </div>
+       
+				</div>
+			</div>
+
+            <div class="mb-3">
+				<label for="dateOfBirth">password</label>
+				<div class="input-group">
+            <div class="col-11">
+              <input class="form-control" formControlName="password" type="password" 
+              [ngClass]="{ 'is-invalid':submitted &&  UsuarioForm.password.errors }">            </div>
+
+            <div class="col-1">
+              
+          <div *ngIf="UsuarioForm.controls.password.touched && UsuarioForm.controls.password.errors?.required"
+          class="text text-danger mt-1">
+          *
+        </div>
+          </div>
+       
+				</div>
+			</div>
+
+		</form>
+	</div>
+	
+	<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modal.close('Save click')">Cancelar</button>
+
+    <button type="button" class="btn btn-primary" (click)="editarCrear()">{{accion}}</button>
+	</div>
+</ng-template>
+
+
+<ng-template #eliminar let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{tituloModal}}</h4>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+	</div>
+
+  <div class="modal-body">
+    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modal.close('Save click')">Cancelar</button>
+
+    <button type="button" class="btn btn-primary" (click)="eliminarCatalogo()">{{accion}}</button>
+	</div>
+	
+</ng-template>
