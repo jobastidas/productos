@@ -54,17 +54,18 @@ this.categoria()
   })
   }
 
+
+  
+
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 console.log(this.data_init);
 
     const temp = this.data_init.filter(function (d) {
-      return d.nombre === null || d.nombre === ''  ?        
-     d.correo === null || d.correo === ''  ?false
-     // d.rol=== null || d.rol === ''  ? false 
+      return d.nombre === null || d.nombre === ''  ?  false      
+ //    d.categoria.nombre === null || d.categoria.nombre === ''  ?false
       : d.nombre.toLowerCase().indexOf(val)  !== -1 || !val
-      : d.correo.toLowerCase().indexOf(val)  !== -1 || !val
-    //  : d.rol.toLowerCase().indexOf(val)  !== -1 || !val
+      //: d.categoria.nombre.toLowerCase().indexOf(val)  !== -1 || !val
     })   
     this.data = temp; 
   }
